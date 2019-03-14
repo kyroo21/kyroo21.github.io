@@ -34,30 +34,27 @@ var z = 0;
 var z1;
 var z2;
 var z3;
-var zx = -20;
-var zy = -5;
+var zx = 0;
 var score = 0;
-var h1 = -10;
-var h2 = -15;
+var h1 = -25;
 var ctr;
 var pizza;
 var evilalien;
 var heroalien;
 var bg;
-var xpbounce = 1;
-var ypbounce = 1;
-var xpbounce1 = 1;
-var ypbounce1 = 1;
+
+//                       var bgsound;
 
 
 function preload() {
   pizza = loadImage('pizzadown.png');
-  pizza2 = loadImage( 'pizzaleft.png');
   evilalien = loadImage('evil_alien.png');
   heroalien = loadImage('hero_alien.png');
   bg = loadImage('background.jpg');
   myFont = loadFont("game-over.ttf");
 
+ // bgsound=new sound("bagroundnote.mp3");
+ //  bgsound.play();
 }
 
             var x,y;
@@ -89,20 +86,21 @@ function preload() {
                 z1 = windowWidth/2;
                 z2 = windowWidth - (windowWidth/3);
                 z3 = windowWidth - (windowWidth/6);
-                ctr = 0.01;
+                ctr = 0.0001;
 
-                
+               
             }
 
             function draw(){
                 background(bg, image.width, image.height);
-                image(heroalien,x, y, 100, 100);
+                image(heroalien,x, y, 50, 50);
                 textAlign(CENTER, TOP);
                 textFont("myfont");
                 textSize(32);
                 fill(217,65,78);
-				
                 text("Score :" + score, windowWidth/2, 10);
+
+				
 
 
   h = h + 1;
@@ -138,44 +136,19 @@ function preload() {
      g = -300;
    }
 
-   zx = zx + (xpbounce * 2);
-   if (zx > (windowWidth-10)) 
-    { xpbounce = xpbounce * (-1);}
-
-	if (zx < -20)
-	{ xpbounce = xpbounce * (-1);}
-
-
-	zy = zy + ypbounce;
-   if (zy > windowHeight-50) 
-   {
-    ypbounce = ypbounce * (-1);
-  }
-
-  if (zy < -5)
-   {
-    ypbounce = ypbounce * (-1);
-  }
+   zx = zx + 2;
+   if (zx > (windowWidth-10))
+    { zx = 0}
 
    z = lerp(z,x,0.002 + ctr);
    z1 = lerp(z1,y, 0.001 + ctr);
    z2 = lerp(z2,(x-50), 0.001 + ctr);
    z3 = lerp(z3, (x+250), 0.002 + ctr);
 
-   h1 = h1 + xpbounce1;
-   if (h1 > (windowWidth-10))
-   {
-    xpbounce1 = xpbounce1 * (-1);
-	}
-	if (h1 < -15)
-	{xpbounce1 = xpbounce1 * (-1);}
-
-	h2 = h2 + (ypbounce1 * 2);
-   if (h2 > windowHeight-50) {
-    ypbounce1 = ypbounce1 * (-1);
+   h1 = h1 + 1;
+   if (h1 > windowHeight-50) {
+    h1 = -20;
   }
-  if (h2 < -18)
-  {ypbounce1 = ypbounce1 * (-1);}
   
   fill(166, 90, 59);
   rect(0, windowHeight-40, windowWidth, 40);
@@ -204,175 +177,64 @@ function preload() {
 
   //score circles
   fill(60,76,231);
-  image(pizza, h1, h2, 80, 80);
-  image(pizza, zx, zy, 40, 40);
+  image(pizza, h1, g, 40, 40);
+  image(pizza, h1 + 50, c, 40, 40);
 
   
 //enemy collision
 if(z>(x-30) && z<(x+30) && h>(y-30) && h<(y+30))
 {
-
-fill(0, 0, 0);
-   rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-    textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(z1>(x-20) && z1<(x+20) && a>(y-20) && a<(y+20))
 {
-
-fill(0, 0, 0);
-  rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+     text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(b>(x-30) && b<(x+30) && z1>(y-30) && z1<(y+30))
 {
-
-fill(0, 0, 0);
-  rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+     text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(z2>(x-20) && z2<(x+20) && c>(y-20) && c<(y+20))
 {
-
-fill(0, 0, 0);
-   rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(d>(x-40) && d<(x+40) && z1>(y-40) && z1<(y+40))
 {
-
-fill(0, 0, 0);
-  rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(z3>(x-40) && z3<(x+40) && e>(y-40) && e<(y+40))
 {
-
-fill(0, 0, 0);
-   rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-    text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(f>(x-30) && f<(x+30) && z1>(y-30) && z1<(y+30))
 {
-
-fill(0, 0, 0);
-  rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
 
 if(z1>(x-50) && z1<(x+50) && g>(y-50) && g<(y+50))
 {
-
-fill(0, 0, 0);
-   rect( 0, 0, windowWidth, windowHeight);
-   fill(255,255,255);
-   textFont("myfont");
-     textSize(60);
-   text("Game Over!", windowWidth/2, (windowHeight/2)-50);
-
-	 fill(255,255,255);
-     textFont("myfont");
-     textSize(50);
-     text("Score :"+ score, windowWidth/2, (windowHeight/2)+50);
-
+    text("Game Over!", windowWidth, windowHeight);
     noLoop();
 }
- //fill(0, 0, 0);
- //rect( zx,h1, 150, 150);
-
-
 
 //score
-// 
-if((h1>(x-80) && h1<(x+80)) && (h2<(y+80) && h2>(y-80)))
+if(zx>(x-20) && zx<(x+20) && h1>(y-20) && h1<(y+20))
 {
   score = score+1;
   h1 = -10;
-  h2 = -15;
- // noLoop();
-}
-
-if((zx>(x-80) && zx<(x+80)) && (zy<(y+80) && zy>(y-80)))
-{
-  score = score+1;
-  zx = -20;
-  zy = -5;
- // noLoop();
 }
 
             }
