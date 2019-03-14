@@ -5,7 +5,7 @@
     <meta https-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 
-
+	
     <style>
         #content {position: relative;}
     </style>
@@ -80,7 +80,7 @@ function preload() {
                     ssl: true  //enables a secure connection. This option has to be used if using the OCAD webspace
                 });
 
-                //attach callbacks to the pubnub object to handle messages and connections *********
+                //attach callbacks to the pubnub object to handle messages and connections **********
                 dataServer.addListener({ message: readIncoming, presence: whoisconnected })
                 dataServer.subscribe({channels: [channelName]});
                 
