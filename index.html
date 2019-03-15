@@ -93,7 +93,8 @@ function preload() {
                 z1 = windowWidth/2;
                 z2 = windowWidth - (windowWidth/3);
                 z3 = windowWidth - (windowWidth/6);
-                ctr = 0.005;
+                //ctr = 0.005;
+				ctr=0.00000000; ////////////////////////////////////////////////////CTR
 
                 
             }
@@ -108,6 +109,10 @@ function preload() {
 				
                 text("Score :" + score, windowWidth/2, 10);
 
+				if(ctr<0.01)/////////////////////////////////////////////////////CTR
+				{
+					ctr=ctr+0.00001;
+				}
 
   h = h + 1;
    if (h > windowHeight-60) {
@@ -181,10 +186,15 @@ function preload() {
     ypbounce2 = ypbounce2 * (-1);
   }
 
-   z = lerp(z,x,0.002 + ctr);
+   z = lerp(z,x,0.0002 + ctr);/////////////////////////////////////////////////CTR
+   z1 = lerp(z1,y, 0.0001 + ctr);
+   z2 = lerp(z2,(x-50), 0.0001 + ctr);
+   z3 = lerp(z3, (x+250), 0.0002 + ctr);
+
+   /*z = lerp(z,x,0.002 + ctr);
    z1 = lerp(z1,y, 0.001 + ctr);
    z2 = lerp(z2,(x-50), 0.001 + ctr);
-   z3 = lerp(z3, (x+250), 0.002 + ctr);
+   z3 = lerp(z3, (x+250), 0.002 + ctr);*/
 
    h1 = h1 + xpbounce1;
    if (h1 > (windowWidth-10))
